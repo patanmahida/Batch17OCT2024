@@ -1,0 +1,48 @@
+#include <stdio.h>
+
+void Triangle(int n, int isAlphabet) {
+    for (int i = 1; i <= n; i++) {
+        
+        for (int j = 1; j <= n - i; j++) {
+            printf(" ");
+        }
+
+        
+        for (int j = 1; j <= i; j++) {
+            if (isAlphabet) {
+                printf("%c", 'A' + j - 1); 
+            } else {
+                printf("%d", j); 
+            }
+        }
+
+       
+        for (int j = i - 1; j >= 1; j--) {
+            if (isAlphabet) {
+                printf("%c", 'A' + j - 1); 
+            } else {
+                printf("%d", j); 
+            }
+        }
+
+        printf("\n");
+    }
+}
+
+int main() {
+    int n;
+
+    
+    printf("Enter the height of the triangle: ");
+    scanf("%d", &n);
+    printf("\nAlphabet Triangle:\n");
+    Triangle(n, 1);
+    printf("\nNumber Triangle:\n");
+    Triangle(n, 0);
+
+    
+
+   
+    
+    return 0;
+}

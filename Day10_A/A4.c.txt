@@ -1,0 +1,39 @@
+#include <stdio.h>
+#include <stdlib.h>
+void rotateArray(int arr[], int n, int k) {
+    k = k % n;  
+    int* temp = (int*)malloc(n * sizeof(int));
+    for (int i = 0; i < n; i += k) {
+        int blockEnd = (i + k - 1 < n) ? i + k - 1 : n - 1;
+        int j = i;
+        for (int l = blockEnd; l >= i; l--) {
+            temp[j++] = arr[l];
+        }
+    }
+    for (int i = 0; i < n; i++) {
+        arr[i] = temp[i];
+    }
+    free(temp);
+}
+void printArray(int arr[], int n) {
+    for (int i = 0; i < n; i++) {
+        printf("%d ", arr[i]);
+    }
+    printf("\n");
+}
+
+int main() {
+    int arr[] = {1, 2, 3, 4, 5, 6, 7, 8, 9};
+    int n = sizeof(arr) / sizeof(arr[0]);
+    int k = 3;
+
+    printf("Original Array:\n");
+    printArray(arr, n);
+
+    rotateArray(arr, n, k);
+
+    printf("Array after rotating every %d elements:\n", k);
+    printArray(arr, n);
+
+    return 0;
+}
